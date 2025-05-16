@@ -1,9 +1,9 @@
 # Maravel PHP Framework
 
-[![Build Status](https://travis-ci.org/macropay-solutions/maravel-framework.svg)](https://travis-ci.org/macropay-solutions/maravel-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/macropay-solutions/maravel-framework)](https://packagist.org/packages/macropay-solutions/maravel-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/macropay-solutions/maravel-framework)](https://packagist.org/packages/macropay-solutions/maravel-framework)
-[![License](https://img.shields.io/packagist/l/macropay-solutions/maravel)](https://packagist.org/packages/macropay-solutions/maravel-framework)
+[![Build Status](https://travis-ci.org/macropay-solutions/maravel-framework.svg)](https://travis-ci.org/macropay-solutions/maravel)
+[![Total Downloads](https://img.shields.io/packagist/dt/macropay-solutions/maravel)](https://packagist.org/packages/macropay-solutions/maravel)
+[![Latest Stable Version](https://img.shields.io/packagist/v/macropay-solutions/maravel)](https://packagist.org/packages/macropay-solutions/maravel)
+[![License](https://img.shields.io/packagist/l/macropay-solutions/maravel)](https://packagist.org/packages/macropay-solutions/maravel)
 
 
 ## Official Documentation
