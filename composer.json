@@ -13,6 +13,12 @@
         "mockery/mockery": "^1.4.4",
         "phpunit/phpunit": "^10.0"
     },
+    "suggest": {
+        "macropay-solutions/laravel-crud-wizard-free": "*",
+        "macropay-solutions/laravel-crud-wizard-decorator-free": "*",
+        "macropay-solutions/laravel-crud-wizard-client-free": "*",
+        "macropay-solutions/laravel-crud-wizard-generator": "*"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "app/",
