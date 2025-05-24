@@ -17,6 +17,11 @@ class Application extends \Laravel\Lumen\Application
     {
         if (!$this->configurationIsCached()) {
             (new LoadEnvironmentVariables(\dirname(__DIR__)))->bootstrap();
+            \date_default_timezone_set(\env('APP_TIMEZONE', 'UTC'));
+
+            parent::__construct($basePath);
+
+            return;
         }
 
         parent::__construct($basePath);
