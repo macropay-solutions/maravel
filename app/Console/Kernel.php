@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ConfigCacheCommand;
+use App\Console\Commands\ConfigClearCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        ConfigCacheCommand::class,
+        ConfigClearCommand::class,
     ];
 
     /**
