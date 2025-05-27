@@ -11,11 +11,17 @@ Documentation for the framework can be found on the [Lumen website](https://lume
 
 ## Contributing
 
-We plan to not change the code that often and allow you to build packages that use the DI container to extend functionality and also allow retroactive bug fixing.
+We plan to not change the code that often in the [maravel-framework](https://github.com/macropay-solutions/maravel-framework) package and allow you to build packages that use the DI container to extend functionality and also allow retroactive bug fixing.
 
 We remain open for suggestions in the discussions area: https://github.com/macropay-solutions/maravel-framework/discussions
 
-> **Note:**  Classes that use the Macroable trait are resolved from DI container instead of being instantiated with new. The Illuminate namespace can still be used to keep the compatibility with laravel packages.
+> **Notes:**
+> 
+> We improved this template vs Lumen 10.0.4 template with:
+> 
+> route:{cache|clear} command
+> 
+> config:{cache|clear} command
 
 ## Security Vulnerabilities
 
