@@ -77,6 +77,30 @@ class Application extends \Laravel\Lumen\Application
     }
 
     /**
+     * Get the path to the configuration cache file.
+     */
+    public function getCachedRoutesPath(): string
+    {
+        return $this->normalizeCachePath('APP_ROUTES_CACHE', 'cache/routes-v7.php');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function bootstrapRouter(): void
+    {
+        $this->router = new Router($this);
+    }
+
+    /**
+     * Determine if the application routes are cached.
+     */
+    public function routesAreCached(): bool
+    {
+        return \is_file($this->getCachedRoutesPath());
+    }
+
+    /**
      * @inheritDoc
      */
     protected function registerConfigBindings(): void

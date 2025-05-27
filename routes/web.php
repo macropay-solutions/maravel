@@ -13,6 +13,7 @@
 |
 */
 
-$router->get('/', function () use ($router): string {
-    return $router->app->version();
-});
+$router->get('/', [
+    'as' => 'version',
+    'uses' => 'VersionController@version',
+]);
