@@ -101,7 +101,7 @@ $app->configure('app');
 if (!$app->routesAreCached()) {
     $app->router->group([
         'namespace' => 'App\Http\Controllers',
-    ], function ($router) {
+    ], function (\App\Router $router): void {
         require __DIR__ . '/../routes/web.php';
     });
 }
