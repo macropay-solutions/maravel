@@ -83,6 +83,15 @@ class ConfigCacheCommand extends Command
         $app->useStoragePath($this->laravel->storagePath());
 
         $app->make(ConsoleKernelContract::class)->bootstrap();
+        $app->boot();
+
+        foreach ($app->availableBindings as $binding => $resolver) {
+            try {
+                $app->make($binding);
+            } catch (\Throwable $e) {
+                $this->info($e->getMessage());
+            }
+        }
 
         return $app['config']->all();
     }

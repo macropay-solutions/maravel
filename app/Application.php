@@ -9,6 +9,56 @@ use Laravel\Lumen\Bootstrap\LoadEnvironmentVariables;
 class Application extends \Laravel\Lumen\Application
 {
     /**
+     * @inheritdoc
+     */
+    public $availableBindings = [
+        'auth' => 'registerAuthBindings',
+        'auth.driver' => 'registerAuthBindings',
+        \Illuminate\Auth\AuthManager::class => 'registerAuthBindings',
+        \Illuminate\Contracts\Auth\Guard::class => 'registerAuthBindings',
+        \Illuminate\Contracts\Auth\Access\Gate::class => 'registerAuthBindings',
+        \Illuminate\Contracts\Broadcasting\Broadcaster::class => 'registerBroadcastingBindings',
+        \Illuminate\Contracts\Broadcasting\Factory::class => 'registerBroadcastingBindings',
+        \Illuminate\Contracts\Bus\Dispatcher::class => 'registerBusBindings',
+        'cache' => 'registerCacheBindings',
+        'cache.store' => 'registerCacheBindings',
+        \Illuminate\Contracts\Cache\Factory::class => 'registerCacheBindings',
+        \Illuminate\Contracts\Cache\Repository::class => 'registerCacheBindings',
+        'composer' => 'registerComposerBindings',
+        'config' => 'registerConfigBindings',
+        'db' => 'registerDatabaseBindings',
+        /** Illuminate\Database\Eloquent\Factory::class => 'registerDatabaseBindings', */ // removed since V8
+        'filesystem' => 'registerFilesystemBindings',
+        'filesystem.cloud' => 'registerFilesystemBindings',
+        'filesystem.disk' => 'registerFilesystemBindings',
+        \Illuminate\Contracts\Filesystem\Cloud::class => 'registerFilesystemBindings',
+        \Illuminate\Contracts\Filesystem\Filesystem::class => 'registerFilesystemBindings',
+        \Illuminate\Contracts\Filesystem\Factory::class => 'registerFilesystemBindings',
+        'encrypter' => 'registerEncrypterBindings',
+        \Illuminate\Contracts\Encryption\Encrypter::class => 'registerEncrypterBindings',
+        'events' => 'registerEventBindings',
+        \Illuminate\Contracts\Events\Dispatcher::class => 'registerEventBindings',
+        'files' => 'registerFilesBindings',
+        'hash' => 'registerHashBindings',
+        \Illuminate\Contracts\Hashing\Hasher::class => 'registerHashBindings',
+        'log' => 'registerLogBindings',
+        \Psr\Log\LoggerInterface::class => 'registerLogBindings',
+        'queue' => 'registerQueueBindings',
+        'queue.connection' => 'registerQueueBindings',
+        \Illuminate\Contracts\Queue\Factory::class => 'registerQueueBindings',
+        \Illuminate\Contracts\Queue\Queue::class => 'registerQueueBindings',
+        'router' => 'registerRouterBindings',
+        \Psr\Http\Message\ServerRequestInterface::class => 'registerPsrRequestBindings',
+        \Psr\Http\Message\ResponseInterface::class => 'registerPsrResponseBindings',
+        'translator' => 'registerTranslationBindings',
+        'url' => 'registerUrlGeneratorBindings',
+        'validator' => 'registerValidatorBindings',
+        \Illuminate\Contracts\Validation\Factory::class => 'registerValidatorBindings',
+        'view' => 'registerViewBindings',
+        \Illuminate\Contracts\View\Factory::class => 'registerViewBindings',
+    ];
+
+    /**
      * The prefixes of absolute cache paths for use during normalization.
      */
     protected array $absoluteCachePathPrefixes = ['/', '\\'];
