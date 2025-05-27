@@ -55,9 +55,17 @@ class RouteCacheCommand extends Command
         $router = $this->getFreshApplicationRouter();
 
         $this->files->put(
-            $this->laravel->getCachedRoutesPath(),
+            $path = $this->laravel->getCachedRoutesPath(),
             '<?php return ' . \var_export($router->getCacheData(), true) . ';' . PHP_EOL
         );
+
+        try {
+            require $path;
+        } catch (\Throwable $e) {
+            $this->files->delete($path);
+
+            throw new \LogicException('Your routes are not serializable.', 0, $e);
+        }
 
         $this->info('Routes cached successfully.');
     }
