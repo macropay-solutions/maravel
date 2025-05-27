@@ -61,17 +61,15 @@ class Application extends \Laravel\Lumen\Application
      */
     public function configure($name): void
     {
-        if ($this->configurationIsCached()) {
-            $this->loadedConfigurations[$name] = true;
-
-            return;
-        }
-
         if (isset($this->loadedConfigurations[$name])) {
             return;
         }
 
         $this->loadedConfigurations[$name] = true;
+
+        if ($this->configurationIsCached()) {
+            return;
+        }
 
         if ('' !== $path = $this->getConfigurationPath($name)) {
             $this->make('config')->set($name, require $path);
