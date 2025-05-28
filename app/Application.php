@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Console\Commands\RouteClearCommand;
+use FastRoute\Dispatcher;
 use Illuminate\Config\Repository;
 use Illuminate\Support\Str;
 use Laravel\Lumen\Bootstrap\LoadEnvironmentVariables;
@@ -92,7 +94,7 @@ class Application extends \Laravel\Lumen\Application
      */
     public function getCachedConfigPath(): string
     {
-        return $this->normalizeCachePath('APP_CONFIG_CACHE', 'cache/config.php');
+        return $this->bootstrapPath('cache' . DIRECTORY_SEPARATOR . 'config.php');
     }
 
     /**
@@ -129,9 +131,9 @@ class Application extends \Laravel\Lumen\Application
     /**
      * Get the path to the configuration cache file.
      */
-    public function getCachedRoutesPath(): string
+    public function getCachedRoutesPath(string $name = 'routes-v7.php'): string
     {
-        return $this->normalizeCachePath('APP_ROUTES_CACHE', 'cache/routes-v7.php');
+        return $this->bootstrapPath('cache' . DIRECTORY_SEPARATOR . $name);
     }
 
     /**
@@ -174,5 +176,29 @@ class Application extends \Laravel\Lumen\Application
         }
 
         return Str::startsWith($env, $this->absoluteCachePathPrefixes) ? $env : $this->basePath($env);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function createDispatcher(): Dispatcher
+    {
+        if (isset($this->dispatcher)) {
+            return $this->dispatcher;
+        }
+
+        $closure = function (\FastRoute\RouteCollector $r): void {
+            foreach ($this->router->getRoutes() as $route) {
+                $r->addRoute($route['method'], $route['uri'], $route['action']);
+            }
+        };
+
+        if (!$this->routesAreCached()) {
+            return \FastRoute\simpleDispatcher($closure);
+        }
+
+        return \FastRoute\cachedDispatcher($closure, [
+            'cacheFile' => $this->getCachedRoutesPath(RouteClearCommand::FAST_ROUTE_PHP)
+        ]);
     }
 }

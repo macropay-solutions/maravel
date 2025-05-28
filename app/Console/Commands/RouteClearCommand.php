@@ -7,6 +7,8 @@ use Illuminate\Filesystem\Filesystem;
 
 class RouteClearCommand extends Command
 {
+    public const FAST_ROUTE_PHP = 'fast_route.php';
+
     /**
      * The Lumen application instance.
      *
@@ -49,6 +51,7 @@ class RouteClearCommand extends Command
     public function handle(): void
     {
         $this->files->delete($this->laravel->getCachedRoutesPath());
+        $this->files->delete($this->laravel->getCachedRoutesPath(self::FAST_ROUTE_PHP));
 
         $this->info('Route cache cleared successfully.');
     }
