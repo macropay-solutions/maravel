@@ -4,9 +4,7 @@ namespace App\Console\Commands;
 
 use App\Router;
 use Illuminate\Console\Command;
-use Illuminate\Contracts\Console\Kernel as ConsoleKernelContract;
 use Illuminate\Filesystem\Filesystem;
-use Laravel\Lumen\Application;
 
 class RouteCacheCommand extends Command
 {
@@ -52,7 +50,8 @@ class RouteCacheCommand extends Command
     public function handle(): void
     {
         $this->call('route:clear');
-        $router = $this->getFreshApplicationRouter();
+        /** @var Router $router */
+        $router = \app('router');
 
         $this->files->put(
             $path = $this->laravel->getCachedRoutesPath(),
@@ -68,20 +67,5 @@ class RouteCacheCommand extends Command
         }
 
         $this->info('Routes cached successfully.');
-    }
-
-    /**
-     * Boot a fresh copy of the application and get the routes.
-     */
-    protected function getFreshApplicationRouter(): Router
-    {
-        /** @var Application $app */
-        $app = require $this->laravel->bootstrapPath() . '/app.php';
-
-        $app->useStoragePath($this->laravel->storagePath());
-
-        $app->make(ConsoleKernelContract::class)->bootstrap();
-
-        return $app['router'];
     }
 }
