@@ -7,7 +7,7 @@
 
 ## Official Documentation
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs/10.x) and in the [wiki](https://github.com/macropay-solutions/maravel/wiki) section.
+Documentation for the framework can be found in the [Wiki](https://github.com/macropay-solutions/maravel/wiki) section and in [Lumen website](https://lumen.laravel.com/docs/10.x).
 
 ## Contributing
 
