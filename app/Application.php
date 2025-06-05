@@ -174,18 +174,6 @@ class Application extends \Laravel\Lumen\Application
     }
 
     /**
-     * Normalize a relative or absolute path to a cache file.
-     */
-    protected function normalizeCachePath(string $key, string $default): string
-    {
-        if (\is_null($env = \env($key))) {
-            return $this->bootstrapPath($default);
-        }
-
-        return Str::startsWith($env, $this->absoluteCachePathPrefixes) ? $env : $this->basePath($env);
-    }
-
-    /**
      * @inheritdoc
      */
     protected function createDispatcher(): Dispatcher
