@@ -4,7 +4,6 @@ namespace App;
 
 use FastRoute\Dispatcher;
 use Illuminate\Config\Repository;
-use Illuminate\Support\Str;
 use Laravel\Lumen\Bootstrap\LoadEnvironmentVariables;
 
 class Application extends \Laravel\Lumen\Application
